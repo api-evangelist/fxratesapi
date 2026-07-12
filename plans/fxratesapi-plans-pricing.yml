@@ -1,0 +1,88 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: FXRatesAPI
+providerId: fxratesapi
+created: '2026-07-12'
+modified: '2026-07-12'
+reconciled: false
+tags:
+- Foreign Exchange
+- FX
+- Currency
+- Exchange Rates
+- Forex
+- Plans
+description: >-
+  FXRatesAPI offers a free/limited tier plus paid subscription tiers.
+  The free tier is confirmed by live probing: the latest, historical,
+  time-series, convert, and currencies endpoints all respond with HTTP 200
+  without an API key. Paid tiers raise the monthly request quota, increase
+  update frequency, and unlock base-currency switching and full historical
+  depth. The exact tier names, prices, and quotas below are MODELED and marked
+  reconciled=false because the fxratesapi.com pricing page is client-rendered
+  and could not be read without signing in. Verify names, prices, and quotas
+  against fxratesapi.com/pricing on reconciliation.
+notes: >-
+  reconciled=false. Dollar amounts and quota numbers are intentionally NOT
+  asserted here to avoid fabrication; only the structure (a free tier plus paid
+  subscription tiers gated on quota, update frequency, and base-currency
+  switching) is modeled. Populate exact values from the signed-in pricing page.
+sources:
+- https://fxratesapi.com/pricing
+- https://fxratesapi.com/docs/pricing
+- https://fxratesapi.com/docs/authentication
+plans:
+- id: fxratesapi-free
+  name: Free
+  type: free
+  description: >-
+    Limited free tier usable without an API key. Confirmed live: latest,
+    historical, time-series, convert, and currencies endpoints return HTTP 200
+    anonymously. Subject to a capped monthly request quota and a fixed
+    (non-selectable) base currency / reduced update frequency per the pricing
+    page. Exact quota not reconciled.
+  entries:
+  - label: Monthly Requests
+    name: monthly_requests
+    type: quota
+    metric: requests
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: '0'
+    userMultiplied: false
+  elements:
+  - name: Latest Rates
+  - name: Historical Rates
+  - name: Time-Series
+  - name: Convert
+  - name: Currencies
+- id: fxratesapi-paid
+  name: Paid Subscription
+  type: subscription
+  description: >-
+    Paid subscription tiers unlock higher monthly request quotas, more frequent
+    rate updates, base-currency switching, and full historical depth. FXRatesAPI
+    publishes multiple named paid tiers; specific names, prices, and quotas are
+    not reconciled in this artifact.
+  entries:
+  - label: Subscription
+    name: subscription
+    type: recurring
+    metric: requests
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: see fxratesapi.com/pricing (not reconciled)
+    userMultiplied: false
+  elements:
+  - name: Higher Request Quota
+  - name: Increased Update Frequency
+  - name: Base Currency Switching
+  - name: Full Historical Depth
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

@@ -1,0 +1,162 @@
+aid: fxratesapi
+url: https://raw.githubusercontent.com/api-evangelist/fxratesapi/refs/heads/main/apis.yml
+name: FXRatesAPI
+kind: company
+description: FXRatesAPI is a foreign exchange rates REST API that delivers real-time
+  and historical currency exchange rates for 185+ fiat currencies plus major
+  cryptocurrencies and precious metals. It exposes JSON endpoints for the latest
+  rates, historical rates for any past date, time-series ranges, currency
+  conversion, and a currencies list. A limited tier is usable without an API key;
+  higher request quotas, more frequent updates, and additional base-currency
+  switching are unlocked with a paid API key passed via the api_key query
+  parameter or an Authorization Bearer header.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Foreign Exchange
+- FX
+- Currency
+- Exchange Rates
+- Forex
+- Currency Conversion
+- Historical Rates
+- Financial Data
+- Cryptocurrencies
+created: '2026-07-12'
+modified: '2026-07-12'
+specificationVersion: '0.19'
+apis:
+- aid: fxratesapi:fxratesapi-latest-rates-api
+  name: FXRatesAPI Latest Rates API
+  tags:
+  - Latest Rates
+  - Exchange Rates
+  - Real Time
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://fxratesapi.com/docs/endpoints/latest-exchange-rates
+  baseURL: https://api.fxratesapi.com
+  properties:
+  - url: https://fxratesapi.com/docs/endpoints/latest-exchange-rates
+    type: APIReference
+  - url: https://fxratesapi.com/docs
+    type: Documentation
+  - url: openapi/fxratesapi-openapi.yml
+    type: OpenAPI
+  - url: collections/fxratesapi.postman_collection.json
+    type: PostmanCollection
+  - url: collections/fxratesapi.opencollection.json
+    type: OpenCollection
+  description: Returns the most recent exchange rates for a chosen base currency
+    against all or a selected set of currencies. GET /latest accepts base and
+    currencies (comma-separated) query parameters; confirmed to respond without
+    an API key for a limited tier.
+- aid: fxratesapi:fxratesapi-historical-rates-api
+  name: FXRatesAPI Historical Rates API
+  tags:
+  - Historical Rates
+  - Exchange Rates
+  - Time Travel
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://fxratesapi.com/docs/endpoints/historical-rates
+  baseURL: https://api.fxratesapi.com
+  properties:
+  - url: https://fxratesapi.com/docs/endpoints/historical-rates
+    type: APIReference
+  - url: https://fxratesapi.com/docs
+    type: Documentation
+  - url: openapi/fxratesapi-openapi.yml
+    type: OpenAPI
+  - url: collections/fxratesapi.postman_collection.json
+    type: PostmanCollection
+  - url: collections/fxratesapi.opencollection.json
+    type: OpenCollection
+  description: Returns exchange rates as they were on a specific past date. GET
+    /historical accepts a required date parameter plus optional base and
+    currencies parameters; confirmed live for date=2026-01-01.
+- aid: fxratesapi:fxratesapi-time-series-api
+  name: FXRatesAPI Time-Series API
+  tags:
+  - Time Series
+  - Historical Rates
+  - Ranges
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://fxratesapi.com/docs/endpoints/time-series-exchange-rates
+  baseURL: https://api.fxratesapi.com
+  properties:
+  - url: https://fxratesapi.com/docs/endpoints/time-series-exchange-rates
+    type: APIReference
+  - url: https://fxratesapi.com/docs
+    type: Documentation
+  - url: openapi/fxratesapi-openapi.yml
+    type: OpenAPI
+  - url: collections/fxratesapi.postman_collection.json
+    type: PostmanCollection
+  - url: collections/fxratesapi.opencollection.json
+    type: OpenCollection
+  description: Returns daily exchange rates across a date range for a base currency
+    and a set of target currencies. GET /timeseries accepts start_date, end_date,
+    base, and currencies parameters; confirmed live returning a date-keyed rates
+    object.
+- aid: fxratesapi:fxratesapi-convert-api
+  name: FXRatesAPI Convert API
+  tags:
+  - Currency Conversion
+  - Convert
+  - FX
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://fxratesapi.com/docs/endpoints/convert-currency
+  baseURL: https://api.fxratesapi.com
+  properties:
+  - url: https://fxratesapi.com/docs/endpoints/convert-currency
+    type: APIReference
+  - url: https://fxratesapi.com/docs
+    type: Documentation
+  - url: openapi/fxratesapi-openapi.yml
+    type: OpenAPI
+  - url: collections/fxratesapi.postman_collection.json
+    type: PostmanCollection
+  - url: collections/fxratesapi.opencollection.json
+    type: OpenCollection
+  description: Converts an amount from one currency to another at the latest or a
+    historical rate. GET /convert accepts from, to, amount, and an optional date
+    parameter; confirmed live returning the applied rate and computed result.
+- aid: fxratesapi:fxratesapi-currencies-api
+  name: FXRatesAPI Currencies API
+  tags:
+  - Currencies
+  - Metadata
+  - Symbols
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://fxratesapi.com/docs/endpoints/list-available-currencies
+  baseURL: https://api.fxratesapi.com
+  properties:
+  - url: https://fxratesapi.com/docs/endpoints/list-available-currencies
+    type: APIReference
+  - url: https://fxratesapi.com/docs/currency-list
+    type: Documentation
+  - url: openapi/fxratesapi-openapi.yml
+    type: OpenAPI
+  - url: collections/fxratesapi.postman_collection.json
+    type: PostmanCollection
+  - url: collections/fxratesapi.opencollection.json
+    type: OpenCollection
+  description: Lists every supported currency with code, name, plural name, symbol,
+    native symbol, and decimal digits. GET /currencies takes no parameters;
+    confirmed live returning 185 currency entries.
+common:
+- type: DomainSecurity
+  url: security/fxratesapi-domain-security.yml
+- type: Authentication
+  url: authentication/fxratesapi-authentication.yml
+- type: Website
+  url: https://fxratesapi.com
+- type: Documentation
+  url: https://fxratesapi.com/docs
+- type: Plans
+  url: plans/fxratesapi-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/fxratesapi-rate-limits.yml
+- type: FinOps
+  url: finops/fxratesapi-finops.yml
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

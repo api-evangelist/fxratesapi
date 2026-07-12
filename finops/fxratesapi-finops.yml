@@ -1,0 +1,73 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: FXRatesAPI
+providerId: fxratesapi
+created: '2026-07-12'
+modified: '2026-07-12'
+reconciled: false
+tags:
+- Foreign Exchange
+- FX
+- Currency
+- Exchange Rates
+- FinOps
+- Cost Management
+description: >-
+  FinOps view of FXRatesAPI spend. FXRatesAPI bills on a subscription model
+  keyed to a monthly request quota (free tier plus paid tiers), not on
+  per-request usage-based metering. Cost is driven by which tier an account
+  subscribes to and how much of the monthly request allowance is consumed.
+  Exact per-tier prices are not reconciled in this artifact (see plans).
+notes: >-
+  reconciled=false. Per-tier prices and quotas must be verified against
+  fxratesapi.com/pricing during reconciliation. Modeled as subscription /
+  recurring pricing based on the observed free-plus-paid-tier structure.
+sources:
+- https://fxratesapi.com/pricing
+- https://fxratesapi.com/docs/endpoints/usage
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: FXRatesAPI
+serviceCategory: Financial Data
+billingModel:
+  pricingCategory: Subscription
+  billingFrequency: Monthly
+  billingCurrency: USD
+  chargeCategories:
+  - Usage
+  - Purchase
+focusColumns:
+  ServiceName: FXRatesAPI
+  ServiceCategory: Financial Data
+  ProviderName: FXRatesAPI
+  PublisherName: FXRatesAPI
+  InvoiceIssuerName: FXRatesAPI
+  BillingCurrency: USD
+  ChargeCategory: Purchase
+  PricingCategory: Subscription
+meters:
+- name: monthly_requests
+  description: API requests counted against the subscription's monthly quota.
+  unit: requests
+  aggregation: sum
+  dimensions:
+  - account
+  - endpoint
+principles:
+- name: Visibility
+  description: Track monthly request consumption against the plan quota in the FXRatesAPI account usage page.
+- name: Allocation
+  description: Issue separate API keys per workload/team to attribute request consumption.
+- name: Optimization
+  description: Cache latest and currency-list responses; batch currencies in a single request; use time-series for ranges instead of many historical calls; right-size the subscription tier to actual monthly volume.
+- name: Accountability
+  description: Review monthly request burn against the plan quota to avoid overage or forced upgrades.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

@@ -1,0 +1,46 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: FXRatesAPI
+providerId: fxratesapi
+created: '2026-07-12'
+modified: '2026-07-12'
+reconciled: false
+tags:
+- Foreign Exchange
+- FX
+- Currency
+- Exchange Rates
+- Rate Limiting
+- Quotas
+description: >-
+  FXRatesAPI meters usage primarily by a monthly request quota that scales with
+  the subscription tier (free vs paid), rather than by a documented
+  requests-per-second burst limit. The free tier is confirmed usable without an
+  API key. Specific per-tier monthly request counts and any short-window burst
+  limits are NOT reconciled in this artifact because the pricing and usage pages
+  are client-rendered and require sign-in to read exact values.
+notes: >-
+  reconciled=false. Verify the monthly request quota per tier and any burst /
+  per-second limits on the fxratesapi.com/pricing and /docs/endpoints/usage
+  pages during reconciliation. No 429 behavior was triggered or confirmed during
+  read-only probing.
+sources:
+- https://fxratesapi.com/pricing
+- https://fxratesapi.com/docs/endpoints/usage
+responseCodes:
+  throttled: 429
+limits:
+- name: Monthly Request Quota
+  scope: account
+  metric: requests
+  limit: see provider documentation
+  notes: Capped monthly request allowance that scales by subscription tier; exact per-tier values not reconciled.
+policies:
+- name: Tiered Quotas
+  description: Monthly request allowance increases from the free tier through paid subscription tiers.
+- name: Backoff Strategy
+  description: Clients should implement exponential backoff with jitter and honor any Retry-After header on 429 responses.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

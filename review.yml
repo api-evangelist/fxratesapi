@@ -1,0 +1,99 @@
+aid: fxratesapi
+name: FXRatesAPI
+review:
+  question: Does FXRatesAPI expose a documented public WebSocket API?
+  answer: false
+  date: '2026-07-12'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was authored. FXRatesAPI's public surface is entirely
+    request/response REST over HTTPS. There is no server-push transport
+    (WebSocket or SSE) on the API to model. Rate updates are obtained by polling
+    the REST /latest endpoint; there is no streaming channel.
+findings:
+  summary: |
+    FXRatesAPI does not publish a documented public WebSocket API. It is a
+    foreign exchange rates REST API with a single base host,
+    https://api.fxratesapi.com, serving JSON over HTTPS (HTTP/2, TLS 1.3). The
+    documented endpoints are /latest, /historical, /timeseries, /convert, and
+    /currencies. No realtime, bidirectional, or streaming WebSocket (ws:// or
+    wss://) endpoint is documented anywhere in the FXRatesAPI docs, and none was
+    discovered while probing the live API. The documentation index at
+    fxratesapi.com/docs lists only these REST endpoint pages plus authentication,
+    currency-list, usage, error-codes, and pricing pages.
+  accessModel: |
+    A limited tier is usable without an API key: GET /latest, /historical,
+    /timeseries, /convert, and /currencies all returned HTTP 200 with valid JSON
+    when called anonymously during this review, and an obviously invalid api_key
+    value was ignored rather than rejected (the request still succeeded as
+    anonymous). Higher request quotas, more frequent updates, and base-currency
+    switching are gated behind a paid API key per the pricing page. The API key,
+    when used, is passed as the api_key query parameter (confirmed accepted,
+    HTTP 200) or as an Authorization: Bearer header (per documentation).
+  ohlcNote: |
+    FXRatesAPI does NOT expose an OHLC (open/high/low/close) endpoint despite
+    OHLC being common among competing FX APIs. GET /ohlc (and path variants)
+    returned {"success":false,"error":{"message":"... - Endpoint Not Found"}},
+    and no OHLC page appears in the documentation sitemap. OHLC was therefore
+    excluded from this catalog entry rather than modeled.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://api.fxratesapi.com
+      documented: true
+      note: All documented endpoints are HTTPS REST returning JSON. HTTP/2, TLS 1.3.
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented in FXRatesAPI's docs, and none was found while probing the live API as of the review date.
+  endpointsConfirmedRest:
+    - GET https://api.fxratesapi.com/latest
+    - GET https://api.fxratesapi.com/historical?date={YYYY-MM-DD}
+    - GET https://api.fxratesapi.com/timeseries?start_date={YYYY-MM-DD}&end_date={YYYY-MM-DD}
+    - GET https://api.fxratesapi.com/convert?from={CUR}&to={CUR}&amount={n}
+    - GET https://api.fxratesapi.com/currencies
+  endpointsProbedAbsent:
+    - GET https://api.fxratesapi.com/ohlc  (Endpoint Not Found)
+  modeledNotConfirmed:
+    - The OpenAPI response schemas are modeled from live JSON responses observed
+      during probing; field sets match the observed payloads but are not derived
+      from a provider-published machine-readable schema.
+    - Full parameter lists (for example format, resolution, amount defaults,
+      places/rounding, and additional filters) may exist beyond the parameters
+      exercised here; only the parameters confirmed live are asserted, others
+      are marked optional.
+sources:
+  - url: https://fxratesapi.com/docs
+    type: Documentation
+    note: Docs index. Client-rendered SPA; endpoint inventory taken from the site sitemap and confirmed by live API probes.
+  - url: https://fxratesapi.com/docs/endpoints/latest-exchange-rates
+    type: APIReference
+    note: Latest rates endpoint. Confirmed live GET /latest (base, currencies params).
+  - url: https://fxratesapi.com/docs/endpoints/historical-rates
+    type: APIReference
+    note: Historical rates endpoint. Confirmed live GET /historical?date=.
+  - url: https://fxratesapi.com/docs/endpoints/time-series-exchange-rates
+    type: APIReference
+    note: Time-series endpoint. Confirmed live GET /timeseries?start_date=&end_date=.
+  - url: https://fxratesapi.com/docs/endpoints/convert-currency
+    type: APIReference
+    note: Convert endpoint. Confirmed live GET /convert?from=&to=&amount=.
+  - url: https://fxratesapi.com/docs/endpoints/list-available-currencies
+    type: APIReference
+    note: Currencies endpoint. Confirmed live GET /currencies returning 185 entries.
+  - url: https://fxratesapi.com/docs/authentication
+    type: Documentation
+    note: API key via api_key query parameter or Authorization Bearer header.
+  - url: https://fxratesapi.com/pricing
+    type: Documentation
+    note: Pricing / plans page (client-rendered). Tier values in plans and finops artifacts are modeled and marked reconciled=false pending sign-in.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket protocol surface exists; FXRatesAPI's public API is
+    request/response REST over HTTPS. No AsyncAPI document was created because
+    there is no server-push transport to model. The catalog models the five
+    documented and live-confirmed REST endpoints and deliberately excludes an
+    OHLC endpoint that is not offered by this provider.

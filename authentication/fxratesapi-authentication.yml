@@ -1,0 +1,37 @@
+generated: '2026-07-12'
+method: probed
+source: live probes of api.fxratesapi.com + fxratesapi.com/docs/authentication
+summary:
+  types:
+  - apiKey
+  - http
+schemes:
+- name: apiKeyQuery
+  type: apiKey
+  in: query
+  keyName: api_key
+  description: >-
+    API key passed as the api_key query parameter, e.g.
+    https://api.fxratesapi.com/latest?api_key=YOUR_KEY. Confirmed accepted
+    (HTTP 200) during live probing.
+  sources:
+  - https://fxratesapi.com/docs/authentication
+  - openapi/fxratesapi-openapi.yml
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  description: >-
+    API key passed as an Authorization: Bearer YOUR_KEY header, per the
+    FXRatesAPI authentication documentation.
+  sources:
+  - https://fxratesapi.com/docs/authentication
+  - openapi/fxratesapi-openapi.yml
+accessModel:
+  anonymousTier: true
+  notes: >-
+    A limited tier is usable without any API key. GET /latest, /historical,
+    /timeseries, /convert, and /currencies all returned HTTP 200 with valid JSON
+    when called anonymously on 2026-07-12, and an obviously invalid api_key value
+    was ignored (the request still succeeded as anonymous) rather than rejected.
+    A paid API key raises request quotas, increases update frequency, and unlocks
+    base-currency switching per the pricing page.

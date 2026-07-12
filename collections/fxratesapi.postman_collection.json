@@ -1,0 +1,129 @@
+{
+  "info": {
+    "name": "FXRatesAPI",
+    "description": "Foreign exchange rates REST API. Base URL: https://api.fxratesapi.com. Returns JSON for latest rates, historical rates, time-series, currency conversion, and a currencies list. A limited tier works without an API key; a paid key is passed as the api_key query parameter or an Authorization Bearer header. Endpoints confirmed by live probing on 2026-07-12.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      { "key": "token", "value": "{{apiKey}}", "type": "string" }
+    ]
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "https://api.fxratesapi.com", "type": "string" },
+    { "key": "apiKey", "value": "", "type": "string" }
+  ],
+  "item": [
+    {
+      "name": "Latest Rates",
+      "item": [
+        {
+          "name": "Get the latest exchange rates",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/latest?base=USD&currencies=EUR,GBP",
+              "host": ["{{baseUrl}}"],
+              "path": ["latest"],
+              "query": [
+                { "key": "base", "value": "USD", "description": "Base currency (ISO 4217). Defaults to USD." },
+                { "key": "currencies", "value": "EUR,GBP", "description": "Comma-separated currency codes to return." }
+              ]
+            },
+            "description": "Returns the most recent exchange rates for the base currency. Works without an API key on the limited tier."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Historical Rates",
+      "item": [
+        {
+          "name": "Get historical exchange rates for a date",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/historical?date=2026-01-01&base=USD",
+              "host": ["{{baseUrl}}"],
+              "path": ["historical"],
+              "query": [
+                { "key": "date", "value": "2026-01-01", "description": "Required. Date in YYYY-MM-DD format." },
+                { "key": "base", "value": "USD", "description": "Base currency (ISO 4217). Defaults to USD." }
+              ]
+            },
+            "description": "Returns exchange rates as they were on the given past date."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Time-Series",
+      "item": [
+        {
+          "name": "Get time-series exchange rates",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/timeseries?start_date=2026-01-01&end_date=2026-01-05&base=USD&currencies=EUR",
+              "host": ["{{baseUrl}}"],
+              "path": ["timeseries"],
+              "query": [
+                { "key": "start_date", "value": "2026-01-01", "description": "Required. Range start (YYYY-MM-DD)." },
+                { "key": "end_date", "value": "2026-01-05", "description": "Required. Range end (YYYY-MM-DD)." },
+                { "key": "base", "value": "USD", "description": "Base currency (ISO 4217)." },
+                { "key": "currencies", "value": "EUR", "description": "Comma-separated currency codes to return." }
+              ]
+            },
+            "description": "Returns daily exchange rates for each date across the range."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Convert",
+      "item": [
+        {
+          "name": "Convert an amount between currencies",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/convert?from=USD&to=EUR&amount=100",
+              "host": ["{{baseUrl}}"],
+              "path": ["convert"],
+              "query": [
+                { "key": "from", "value": "USD", "description": "Required. Source currency (ISO 4217)." },
+                { "key": "to", "value": "EUR", "description": "Required. Target currency (ISO 4217)." },
+                { "key": "amount", "value": "100", "description": "Required. Amount of the source currency." },
+                { "key": "date", "value": "", "description": "Optional. YYYY-MM-DD to convert at a historical rate.", "disabled": true }
+              ]
+            },
+            "description": "Converts an amount from one currency to another at the latest or a historical rate."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Currencies",
+      "item": [
+        {
+          "name": "List supported currencies",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/currencies",
+              "host": ["{{baseUrl}}"],
+              "path": ["currencies"]
+            },
+            "description": "Lists every supported currency with code, name, symbol, and metadata."
+          }
+        }
+      ]
+    }
+  ]
+}
