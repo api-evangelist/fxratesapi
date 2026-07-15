@@ -143,6 +143,8 @@ apis:
     native symbol, and decimal digits. GET /currencies takes no parameters;
     confirmed live returning 185 currency entries.
 common:
+- type: AgenticAccess
+  url: agentic-access/fxratesapi-agentic-access.yml
 - type: DomainSecurity
   url: security/fxratesapi-domain-security.yml
 - type: Authentication
