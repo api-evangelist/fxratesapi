@@ -21,7 +21,7 @@ schemes:
   type: http
   scheme: bearer
   description: >-
-    API key passed as an Authorization: Bearer YOUR_KEY header, per the
+    API key passed as an Authorization: Bearer [example key] header, per the
     FXRatesAPI authentication documentation.
   sources:
   - https://fxratesapi.com/docs/authentication
