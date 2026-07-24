@@ -1,0 +1,149 @@
+openapi: 3.0.3
+info:
+  title: FXRates Convert API
+  description: 'FXRatesAPI is a foreign exchange rates REST API serving real-time and historical currency exchange rates for 185+ fiat currencies plus major cryptocurrencies and precious metals. All endpoints return JSON over HTTPS from the base host https://api.fxratesapi.com. A limited tier is usable without an API key; a paid API key (passed as the api_key query parameter or an Authorization Bearer header) raises quotas, increases update frequency, and unlocks base-currency switching.
+
+
+    Endpoint paths, methods, and parameters below are grounded in live probes of the API on 2026-07-12. Response schemas are modeled from the observed JSON payloads rather than a provider-published machine-readable schema, and only parameters confirmed during probing are asserted; additional optional parameters may exist.'
+  version: '1.0'
+  contact:
+    name: FXRatesAPI
+    url: https://fxratesapi.com
+  termsOfService: https://fxratesapi.com/legal/terms-conditions
+servers:
+- url: https://api.fxratesapi.com
+  description: FXRatesAPI production
+security:
+- {}
+- apiKeyQuery: []
+- bearerAuth: []
+tags:
+- name: Convert
+  description: Convert an amount between two currencies.
+paths:
+  /convert:
+    get:
+      operationId: convertCurrency
+      tags:
+      - Convert
+      summary: Convert an amount between currencies
+      description: Converts an amount from one currency to another using the latest rate, or a historical rate when a date is supplied.
+      parameters:
+      - name: from
+        in: query
+        required: true
+        description: Source currency code (ISO 4217).
+        schema:
+          type: string
+          example: USD
+      - name: to
+        in: query
+        required: true
+        description: Target currency code (ISO 4217).
+        schema:
+          type: string
+          example: EUR
+      - name: amount
+        in: query
+        required: true
+        description: Amount of the source currency to convert.
+        schema:
+          type: number
+          example: 100
+      - name: date
+        in: query
+        required: false
+        description: Optional date (YYYY-MM-DD) to convert at a historical rate.
+        schema:
+          type: string
+          format: date
+      - name: api_key
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Conversion result.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConvertResponse'
+        '400':
+          $ref: '#/components/responses/Error'
+components:
+  schemas:
+    ConvertResponse:
+      type: object
+      description: Modeled from the observed /convert JSON payload.
+      properties:
+        success:
+          type: boolean
+          example: true
+        query:
+          type: object
+          properties:
+            from:
+              type: string
+              example: USD
+            to:
+              type: string
+              example: EUR
+            amount:
+              type: number
+              example: 100
+        info:
+          type: object
+          properties:
+            rate:
+              type: number
+              example: 0.8511001313
+        historical:
+          type: boolean
+          example: false
+        date:
+          type: string
+          format: date-time
+          example: '2026-01-01T23:59:00.000Z'
+        timestamp:
+          type: integer
+          example: 1767311940
+        result:
+          type: number
+          example: 85.11001313
+    ErrorResponse:
+      type: object
+      description: Modeled from observed error payloads. FXRatesAPI returns success=false with either a nested error object ({message}) or a flat error string plus a description field, depending on the endpoint and failure mode.
+      properties:
+        success:
+          type: boolean
+          example: false
+        error:
+          oneOf:
+          - type: string
+            example: missing_from_currency
+          - type: object
+            properties:
+              message:
+                type: string
+                example: Endpoint Not Found
+        description:
+          type: string
+          example: The from currency is required for the convert endpoint.
+  responses:
+    Error:
+      description: Error response.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  securitySchemes:
+    apiKeyQuery:
+      type: apiKey
+      in: query
+      name: api_key
+      description: API key passed as the api_key query parameter.
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'API key passed as an Authorization: Bearer <API_KEY> header.'
