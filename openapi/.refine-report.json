@@ -1,0 +1,22 @@
+{
+  "provider": "fxratesapi",
+  "sources": [
+    "fxratesapi-convert-api-openapi.yml",
+    "fxratesapi-currencies-api-openapi.yml",
+    "fxratesapi-historical-rates-api-openapi.yml",
+    "fxratesapi-latest-rates-api-openapi.yml",
+    "fxratesapi-time-series-api-openapi.yml"
+  ],
+  "outputs": [
+    "fxratesapi-convert-api-openapi.yml",
+    "fxratesapi-currencies-api-openapi.yml",
+    "fxratesapi-historical-rates-api-openapi.yml",
+    "fxratesapi-latest-rates-api-openapi.yml",
+    "fxratesapi-time-series-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
