@@ -1,0 +1,105 @@
+{
+  "item": [
+    {
+      "id": "386fc17b-f062-4663-b919-2c7e1d8d0cff",
+      "name": "Currencies",
+      "description": {
+        "content": "List of supported currencies and their metadata.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ff4c77e9-dfb2-4da3-aaec-7b85638d08c8",
+          "name": "List supported currencies",
+          "request": {
+            "name": "List supported currencies",
+            "description": {
+              "content": "Returns an object keyed by currency code, each value describing the currency's code, name, plural name, symbol, native symbol, decimal digits, and rounding. Confirmed live returning 185 entries.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "currencies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2eede9f2-812d-4d7b-b6e8-593dfe6b2918",
+              "name": "Map of supported currencies.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "currencies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": {\n    \"code\": \"EUR\",\n    \"name\": \"Euro\",\n    \"decimal_digits\": 2,\n    \"name_plural\": \"euros\",\n    \"rounding\": 0,\n    \"symbol\": \"€\",\n    \"symbol_native\": \"€\"\n  },\n  \"key_1\": {\n    \"code\": \"EUR\",\n    \"name\": \"Euro\",\n    \"decimal_digits\": 2,\n    \"name_plural\": \"euros\",\n    \"rounding\": 0,\n    \"symbol\": \"€\",\n    \"symbol_native\": \"€\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.fxratesapi.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "noauth"
+  },
+  "info": {
+    "_postman_id": "152637bf-414d-488a-8f66-e71d229e099a",
+    "name": "FXRates Convert Currencies API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "FXRatesAPI is a foreign exchange rates REST API serving real-time and historical currency exchange rates for 185+ fiat currencies plus major cryptocurrencies and precious metals. All endpoints return JSON over HTTPS from the base host https://api.fxratesapi.com. A limited tier is usable without an API key; a paid API key (passed as the api_key query parameter or an Authorization Bearer header) raises quotas, increases update frequency, and unlocks base-currency switching.\n\nEndpoint paths, methods, and parameters below are grounded in live probes of the API on 2026-07-12. Response schemas are modeled from the observed JSON payloads rather than a provider-published machine-readable schema, and only parameters confirmed during probing are asserted; additional optional parameters may exist.\n\nContact Support:\n Name: FXRatesAPI",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "FXRates Convert Latest Rates API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Latest Rates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get the latest exchange rates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.fxratesapi.com/latest",
+            "params": [
+              {
+                "name": "base",
+                "value": "",
+                "type": "query",
+                "description": "Base currency code (ISO 4217). Defaults to USD."
+              },
+              {
+                "name": "currencies",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of currency codes to return. Defaults to all supported currencies."
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "Optional API key. May also be supplied via the Authorization Bearer header."
+              }
+            ]
+          },
+          "docs": "Returns the most recent exchange rates for the requested base currency. Confirmed to respond with HTTP 200 without an API key for a limited tier."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

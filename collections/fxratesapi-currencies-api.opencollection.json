@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "FXRates Convert Currencies API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Currencies",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List supported currencies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.fxratesapi.com/currencies"
+          },
+          "docs": "Returns an object keyed by currency code, each value describing the currency's code, name, plural name, symbol, native symbol, decimal digits, and rounding. Confirmed live returning 185 entries."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

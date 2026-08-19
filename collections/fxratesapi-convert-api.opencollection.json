@@ -1,0 +1,60 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "FXRates Convert API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Convert",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Convert an amount between currencies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.fxratesapi.com/convert",
+            "params": [
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "Source currency code (ISO 4217)."
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "Target currency code (ISO 4217)."
+              },
+              {
+                "name": "amount",
+                "value": "",
+                "type": "query",
+                "description": "Amount of the source currency to convert."
+              },
+              {
+                "name": "date",
+                "value": "",
+                "type": "query",
+                "description": "Optional date (YYYY-MM-DD) to convert at a historical rate."
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Converts an amount from one currency to another using the latest rate, or a historical rate when a date is supplied."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

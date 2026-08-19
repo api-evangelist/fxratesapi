@@ -1,0 +1,54 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "FXRates Convert Historical Rates API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Historical Rates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get historical exchange rates for a date",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.fxratesapi.com/historical",
+            "params": [
+              {
+                "name": "date",
+                "value": "",
+                "type": "query",
+                "description": "The date to retrieve rates for, in YYYY-MM-DD format."
+              },
+              {
+                "name": "base",
+                "value": "",
+                "type": "query",
+                "description": "Base currency code (ISO 4217). Defaults to USD."
+              },
+              {
+                "name": "currencies",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of currency codes to return."
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns the exchange rates as they were on a specific past date."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

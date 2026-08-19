@@ -1,0 +1,185 @@
+{
+  "item": [
+    {
+      "id": "a6f15e80-e011-4aca-a283-10cc5f66ad54",
+      "name": "Latest Rates",
+      "description": {
+        "content": "Most recent exchange rates for a base currency.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "396e146c-2539-4f74-b32c-a238f12c93e4",
+          "name": "Get the latest exchange rates",
+          "request": {
+            "name": "Get the latest exchange rates",
+            "description": {
+              "content": "Returns the most recent exchange rates for the requested base currency. Confirmed to respond with HTTP 200 without an API key for a limited tier.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "latest"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "base",
+                  "value": "USD",
+                  "description": "Base currency code (ISO 4217). Defaults to USD."
+                },
+                {
+                  "disabled": false,
+                  "key": "currencies",
+                  "value": "<string>",
+                  "description": "Comma-separated list of currency codes to return. Defaults to all supported currencies."
+                },
+                {
+                  "disabled": false,
+                  "key": "api_key",
+                  "value": "<string>",
+                  "description": "Optional API key. May also be supplied via the Authorization Bearer header."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "10832002-8537-43a2-ba25-c0dc761278df",
+              "name": "Latest exchange rates.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "latest"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "base",
+                      "value": "EUR"
+                    },
+                    {
+                      "key": "currencies",
+                      "value": "USD,GBP"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"terms\": \"https://fxratesapi.com/legal/terms-conditions\",\n  \"privacy\": \"https://fxratesapi.com/legal/privacy-policy\",\n  \"timestamp\": 1783883940,\n  \"date\": \"2026-07-12T19:19:00.000Z\",\n  \"base\": \"USD\",\n  \"rates\": {\n    \"EUR\": 0.8761481387,\n    \"GBP\": 0.7461771444\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f131bf00-5999-4afc-bcc3-e9d21e9ace10",
+              "name": "Error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "latest"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "base",
+                      "value": "EUR"
+                    },
+                    {
+                      "key": "currencies",
+                      "value": "USD,GBP"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": \"missing_from_currency\",\n  \"description\": \"The from currency is required for the convert endpoint.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.fxratesapi.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "noauth"
+  },
+  "info": {
+    "_postman_id": "9b983ed7-3108-4052-bfa5-8eafba6db5cc",
+    "name": "FXRates Convert Latest Rates API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "FXRatesAPI is a foreign exchange rates REST API serving real-time and historical currency exchange rates for 185+ fiat currencies plus major cryptocurrencies and precious metals. All endpoints return JSON over HTTPS from the base host https://api.fxratesapi.com. A limited tier is usable without an API key; a paid API key (passed as the api_key query parameter or an Authorization Bearer header) raises quotas, increases update frequency, and unlocks base-currency switching.\n\nEndpoint paths, methods, and parameters below are grounded in live probes of the API on 2026-07-12. Response schemas are modeled from the observed JSON payloads rather than a provider-published machine-readable schema, and only parameters confirmed during probing are asserted; additional optional parameters may exist.\n\nContact Support:\n Name: FXRatesAPI",
+      "type": "text/plain"
+    }
+  }
+}

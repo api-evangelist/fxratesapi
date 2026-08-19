@@ -1,0 +1,60 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "FXRates Convert Time-Series API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Time-Series",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get time-series exchange rates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.fxratesapi.com/timeseries",
+            "params": [
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "Range start date in YYYY-MM-DD format."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "Range end date in YYYY-MM-DD format."
+              },
+              {
+                "name": "base",
+                "value": "",
+                "type": "query",
+                "description": "Base currency code (ISO 4217). Defaults to USD."
+              },
+              {
+                "name": "currencies",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of currency codes to return."
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns daily exchange rates for each date across the requested range."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

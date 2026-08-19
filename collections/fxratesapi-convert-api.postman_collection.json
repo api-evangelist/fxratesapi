@@ -1,0 +1,212 @@
+{
+  "item": [
+    {
+      "id": "d6c43953-bfc4-4a77-9930-969144b4eb73",
+      "name": "Convert",
+      "description": {
+        "content": "Convert an amount between two currencies.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "171f7c82-4ddc-4a79-be0d-3dba8eca1248",
+          "name": "Convert an amount between currencies",
+          "request": {
+            "name": "Convert an amount between currencies",
+            "description": {
+              "content": "Converts an amount from one currency to another using the latest rate, or a historical rate when a date is supplied.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "convert"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "from",
+                  "value": "<string>",
+                  "description": "(Required) Source currency code (ISO 4217)."
+                },
+                {
+                  "disabled": false,
+                  "key": "to",
+                  "value": "<string>",
+                  "description": "(Required) Target currency code (ISO 4217)."
+                },
+                {
+                  "disabled": false,
+                  "key": "amount",
+                  "value": "<number>",
+                  "description": "(Required) Amount of the source currency to convert."
+                },
+                {
+                  "disabled": false,
+                  "key": "date",
+                  "value": "<date>",
+                  "description": "Optional date (YYYY-MM-DD) to convert at a historical rate."
+                },
+                {
+                  "disabled": false,
+                  "key": "api_key",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "80fb4859-979c-464f-9943-8fd4772da50b",
+              "name": "Conversion result.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "convert"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "USD"
+                    },
+                    {
+                      "key": "to",
+                      "value": "EUR"
+                    },
+                    {
+                      "key": "amount",
+                      "value": "100"
+                    },
+                    {
+                      "key": "date",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"query\": {\n    \"from\": \"USD\",\n    \"to\": \"EUR\",\n    \"amount\": 100\n  },\n  \"info\": {\n    \"rate\": 0.8511001313\n  },\n  \"historical\": false,\n  \"date\": \"2026-01-01T23:59:00.000Z\",\n  \"timestamp\": 1767311940,\n  \"result\": 85.11001313\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "11e4a8dc-1a82-4422-9283-a086c219cc7c",
+              "name": "Error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "convert"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "USD"
+                    },
+                    {
+                      "key": "to",
+                      "value": "EUR"
+                    },
+                    {
+                      "key": "amount",
+                      "value": "100"
+                    },
+                    {
+                      "key": "date",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": \"missing_from_currency\",\n  \"description\": \"The from currency is required for the convert endpoint.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.fxratesapi.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "noauth"
+  },
+  "info": {
+    "_postman_id": "a442c6df-b3ca-42fb-9277-ee0d70530234",
+    "name": "FXRates Convert API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "FXRatesAPI is a foreign exchange rates REST API serving real-time and historical currency exchange rates for 185+ fiat currencies plus major cryptocurrencies and precious metals. All endpoints return JSON over HTTPS from the base host https://api.fxratesapi.com. A limited tier is usable without an API key; a paid API key (passed as the api_key query parameter or an Authorization Bearer header) raises quotas, increases update frequency, and unlocks base-currency switching.\n\nEndpoint paths, methods, and parameters below are grounded in live probes of the API on 2026-07-12. Response schemas are modeled from the observed JSON payloads rather than a provider-published machine-readable schema, and only parameters confirmed during probing are asserted; additional optional parameters may exist.\n\nContact Support:\n Name: FXRatesAPI",
+      "type": "text/plain"
+    }
+  }
+}
