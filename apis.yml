@@ -36,7 +36,7 @@ tags:
 - Cryptocurrencies
 created: '2026-07-12'
 modified: '2026-07-12'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
 - aid: fxratesapi:fxratesapi-convert-api
   name: FXRatesAPI Convert API
