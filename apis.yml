@@ -72,6 +72,8 @@ apis:
   humanURL: https://fxratesapi.com/docs/endpoints/latest-exchange-rates
   baseURL: https://api.fxratesapi.com
   tags:
+  - Currency
+  tags_raw:
   - Currencies
   properties:
   - type: OpenAPI
@@ -156,6 +158,8 @@ apis:
   humanURL: https://fxratesapi.com/docs/endpoints/latest-exchange-rates
   baseURL: https://api.fxratesapi.com
   tags:
+  - Time Series
+  tags_raw:
   - Time-Series
   properties:
   - type: OpenAPI
