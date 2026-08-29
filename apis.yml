@@ -10,6 +10,18 @@ description: FXRatesAPI is a foreign exchange rates REST API that delivers real-
   higher request quotas, more frequent updates, and additional base-currency
   switching are unlocked with a paid API key passed via the api_key query
   parameter or an Authorization Bearer header.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: open
