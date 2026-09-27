@@ -70,25 +70,6 @@ paths:
           $ref: '#/components/responses/Error'
 components:
   schemas:
-    ErrorResponse:
-      type: object
-      description: Modeled from observed error payloads. FXRatesAPI returns success=false with either a nested error object ({message}) or a flat error string plus a description field, depending on the endpoint and failure mode.
-      properties:
-        success:
-          type: boolean
-          example: false
-        error:
-          oneOf:
-          - type: string
-            example: missing_from_currency
-          - type: object
-            properties:
-              message:
-                type: string
-                example: Endpoint Not Found
-        description:
-          type: string
-          example: The from currency is required for the convert endpoint.
     ConvertResponse:
       type: object
       description: Modeled from the observed /convert JSON payload.
@@ -127,6 +108,25 @@ components:
         result:
           type: number
           example: 85.11001313
+    ErrorResponse:
+      type: object
+      description: Modeled from observed error payloads. FXRatesAPI returns success=false with either a nested error object ({message}) or a flat error string plus a description field, depending on the endpoint and failure mode.
+      properties:
+        success:
+          type: boolean
+          example: false
+        error:
+          oneOf:
+          - type: string
+            example: missing_from_currency
+          - type: object
+            properties:
+              message:
+                type: string
+                example: Endpoint Not Found
+        description:
+          type: string
+          example: The from currency is required for the convert endpoint.
   responses:
     Error:
       description: Error response.

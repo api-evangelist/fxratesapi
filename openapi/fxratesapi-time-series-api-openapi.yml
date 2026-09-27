@@ -72,25 +72,6 @@ paths:
           $ref: '#/components/responses/Error'
 components:
   schemas:
-    ErrorResponse:
-      type: object
-      description: Modeled from observed error payloads. FXRatesAPI returns success=false with either a nested error object ({message}) or a flat error string plus a description field, depending on the endpoint and failure mode.
-      properties:
-        success:
-          type: boolean
-          example: false
-        error:
-          oneOf:
-          - type: string
-            example: missing_from_currency
-          - type: object
-            properties:
-              message:
-                type: string
-                example: Endpoint Not Found
-        description:
-          type: string
-          example: The from currency is required for the convert endpoint.
     TimeSeriesResponse:
       type: object
       description: Modeled from the observed /timeseries JSON payload.
@@ -119,6 +100,25 @@ components:
           example:
             '2026-01-04T23:59:00.000Z':
               EUR: 0.854400106
+    ErrorResponse:
+      type: object
+      description: Modeled from observed error payloads. FXRatesAPI returns success=false with either a nested error object ({message}) or a flat error string plus a description field, depending on the endpoint and failure mode.
+      properties:
+        success:
+          type: boolean
+          example: false
+        error:
+          oneOf:
+          - type: string
+            example: missing_from_currency
+          - type: object
+            properties:
+              message:
+                type: string
+                example: Endpoint Not Found
+        description:
+          type: string
+          example: The from currency is required for the convert endpoint.
   responses:
     Error:
       description: Error response.
