@@ -1,4 +1,4 @@
-# FXRatesAPI (fxratesapi)
+# FXRatesAPI
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,159 +64,125 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-FXRatesAPI is a foreign exchange rates REST API that delivers real-time and historical currency exchange rates for 185+ fiat currencies plus major cryptocurrencies and precious metals. It exposes JSON endpoints for the latest rates, historical rates for any past date, time-series ranges, currency conversion, and a currencies list. All endpoints are served from a single base host, `https://api.fxratesapi.com`, over HTTPS (HTTP/2, TLS 1.3).
+FXRatesAPI is a foreign exchange rates REST API that delivers real-time and historical currency exchange rates for 185+ fiat currencies plus major cryptocurrencies and precious metals. It exposes JSON endpoints for the latest rates, historical rates for any past date, time-series ranges, currency conversion, and a currencies list. A limited tier is usable without an API key; higher request quotas, more frequent updates, and additional base-currency switching are unlocked with a paid API key passed via the api_key query parameter or an Authorization Bearer header.
 
-## Access Model (read this first)
+**Areas:** Foreign Exchange · Currency · Exchange Rates · Currency Conversion · Historical Rates · Financial Data · Cryptocurrencies
 
-- **Free / limited tier — no API key required.** During this review (2026-07-12) `GET /latest`, `/historical`, `/timeseries`, `/convert`, and `/currencies` all returned HTTP 200 with valid JSON when called **anonymously**. An obviously invalid `api_key` value was ignored (the request still succeeded as anonymous) rather than rejected.
-- **Paid tiers — API key required for the good stuff.** Higher monthly request quotas, more frequent rate updates, base-currency switching, and full historical depth are gated behind a paid API key, per the pricing page.
-- **How the key is passed:** as the `api_key` query parameter (confirmed accepted, HTTP 200) or as an `Authorization: Bearer YOUR_KEY` header (per the authentication docs).
-- **Pricing values are not reconciled.** The `fxratesapi.com/pricing` page is client-rendered and could not be read without signing in, so exact tier names, prices, and quotas in `plans/` and `finops/` are modeled and marked `reconciled: false`.
+## FXRatesAPI on APIs.io
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/fxratesapi/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/fxratesapi/refs/heads/main/apis.yml)
+Everything profiled for FXRatesAPI is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/fxratesapi/](https://apis.io/providers/fxratesapi/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (5)
 
-- Foreign Exchange
-- FX
-- Currency
-- Exchange Rates
-- Forex
-- Currency Conversion
-- Historical Rates
-- Financial Data
-- Cryptocurrencies
+- [FXRatesAPI Convert API](https://apis.io/apis/fxratesapi/fxratesapi-convert-api/) — Convert an amount between two currencies.
+- [FXRatesAPI Currencies API](https://apis.io/apis/fxratesapi/fxratesapi-currencies-api/) — List of supported currencies and their metadata.
+- [FXRatesAPI Historical Rates API](https://apis.io/apis/fxratesapi/fxratesapi-historical-rates-api/) — Exchange rates for a specific past date.
+- [FXRatesAPI Latest Rates API](https://apis.io/apis/fxratesapi/fxratesapi-latest-rates-api/) — Most recent exchange rates for a base currency.
+- [FXRatesAPI Time-Series API](https://apis.io/apis/fxratesapi/fxratesapi-time-series-api/) — Daily exchange rates across a date range.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-07-12
-- **Modified:** 2026-07-12
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-All five APIs below were confirmed by live probing of the API on 2026-07-12. Base URL for every endpoint is `https://api.fxratesapi.com`.
+Which operations an agent can call, which act, and which need a human in the loop.
 
-### FXRatesAPI Latest Rates API
+- [Fxratesapi Agentic Access](https://apis.io/agentic-access/fxratesapi/fxratesapi-agentic-access/)
 
-Returns the most recent exchange rates for a chosen base currency against all or a selected set of currencies. `GET /latest` accepts `base` and `currencies` (comma-separated) query parameters.
+#### Collections (6)
 
-- **Human URL:** [https://fxratesapi.com/docs/endpoints/latest-exchange-rates](https://fxratesapi.com/docs/endpoints/latest-exchange-rates)
-- **Base URL:** `https://api.fxratesapi.com`
+Postman and Open Collection request collections.
 
-#### Tags
+- [FXRatesAPI](https://apis.io/collections/fxratesapi/open-fxratesapi/)
+- [FXRates Convert API](https://apis.io/collections/fxratesapi/open-fxratesapi-convert-api/)
+- [FXRates Convert Currencies API](https://apis.io/collections/fxratesapi/open-fxratesapi-currencies-api/)
+- [FXRates Convert Historical Rates API](https://apis.io/collections/fxratesapi/open-fxratesapi-historical-rates-api/)
+- [FXRates Convert Latest Rates API](https://apis.io/collections/fxratesapi/open-fxratesapi-latest-rates-api/)
+- [FXRates Convert Time-Series API](https://apis.io/collections/fxratesapi/open-fxratesapi-time-series-api/)
 
-- Latest Rates
-- Exchange Rates
-- Real Time
+#### Security (2)
 
-#### Properties
+Authentication, trust centre, and vulnerability disclosure.
 
-- [API Reference](https://fxratesapi.com/docs/endpoints/latest-exchange-rates)
-- [Documentation](https://fxratesapi.com/docs)
-- [OpenAPI](openapi/fxratesapi-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/fxratesapi.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/fxratesapi.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Fxratesapi Authentication](https://apis.io/security/fxratesapi/fxratesapi-authentication/)
+- [Fxratesapi Domain Security](https://apis.io/security/fxratesapi/fxratesapi-domain-security/)
 
-### FXRatesAPI Historical Rates API
+#### Plans and pricing (1)
 
-Returns exchange rates as they were on a specific past date. `GET /historical` accepts a required `date` parameter plus optional `base` and `currencies` parameters.
+Published plans, tiers and prices.
 
-- **Human URL:** [https://fxratesapi.com/docs/endpoints/historical-rates](https://fxratesapi.com/docs/endpoints/historical-rates)
-- **Base URL:** `https://api.fxratesapi.com`
+- [Fxratesapi Plans Pricing](https://apis.io/plans/fxratesapi/fxratesapi-plans-pricing/)
 
-#### Tags
+#### Rate limits (1)
 
-- Historical Rates
-- Exchange Rates
-- Time Travel
+Published request limits.
 
-#### Properties
+- [Fxratesapi Rate Limits](https://apis.io/rate-limits/fxratesapi/fxratesapi-rate-limits/)
 
-- [API Reference](https://fxratesapi.com/docs/endpoints/historical-rates)
-- [Documentation](https://fxratesapi.com/docs)
-- [OpenAPI](openapi/fxratesapi-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/fxratesapi.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/fxratesapi.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### FinOps (1)
 
-### FXRatesAPI Time-Series API
+What the API costs to run, by operation.
 
-Returns daily exchange rates across a date range for a base currency and a set of target currencies. `GET /timeseries` accepts `start_date`, `end_date`, `base`, and `currencies` parameters.
+- [Fxratesapi Finops](https://apis.io/finops/fxratesapi/fxratesapi-finops/)
 
-- **Human URL:** [https://fxratesapi.com/docs/endpoints/time-series-exchange-rates](https://fxratesapi.com/docs/endpoints/time-series-exchange-rates)
-- **Base URL:** `https://api.fxratesapi.com`
+## Where to find this API
 
-#### Tags
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-- Time Series
-- Historical Rates
-- Ranges
-
-#### Properties
-
-- [API Reference](https://fxratesapi.com/docs/endpoints/time-series-exchange-rates)
-- [Documentation](https://fxratesapi.com/docs)
-- [OpenAPI](openapi/fxratesapi-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/fxratesapi.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/fxratesapi.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### FXRatesAPI Convert API
-
-Converts an amount from one currency to another at the latest or a historical rate. `GET /convert` accepts `from`, `to`, `amount`, and an optional `date` parameter.
-
-- **Human URL:** [https://fxratesapi.com/docs/endpoints/convert-currency](https://fxratesapi.com/docs/endpoints/convert-currency)
-- **Base URL:** `https://api.fxratesapi.com`
-
-#### Tags
-
-- Currency Conversion
-- Convert
-- FX
-
-#### Properties
-
-- [API Reference](https://fxratesapi.com/docs/endpoints/convert-currency)
-- [Documentation](https://fxratesapi.com/docs)
-- [OpenAPI](openapi/fxratesapi-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/fxratesapi.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/fxratesapi.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### FXRatesAPI Currencies API
-
-Lists every supported currency with code, name, plural name, symbol, native symbol, and decimal digits. `GET /currencies` takes no parameters and was confirmed live returning 185 currency entries.
-
-- **Human URL:** [https://fxratesapi.com/docs/endpoints/list-available-currencies](https://fxratesapi.com/docs/endpoints/list-available-currencies)
-- **Base URL:** `https://api.fxratesapi.com`
-
-#### Tags
-
-- Currencies
-- Metadata
-- Symbols
-
-#### Properties
-
-- [API Reference](https://fxratesapi.com/docs/endpoints/list-available-currencies)
-- [Documentation](https://fxratesapi.com/docs/currency-list)
-- [OpenAPI](openapi/fxratesapi-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/fxratesapi.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/fxratesapi.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Not Offered
-
-- **No OHLC endpoint.** Unlike several competing FX APIs, FXRatesAPI does **not** expose an open/high/low/close endpoint. `GET /ohlc` (and path variants) returned `Endpoint Not Found`, and no OHLC page appears in the docs sitemap. It is deliberately excluded from this catalog rather than modeled.
-- **No WebSocket API.** FXRatesAPI's public surface is entirely request/response REST over HTTPS. There is no documented WebSocket (`wss://`) or SSE streaming channel; rate updates are obtained by polling `/latest`.
-
-## Common Properties
-
-- [Domain Security](security/fxratesapi-domain-security.yml)
-- [Authentication](authentication/fxratesapi-authentication.yml)
 - [Website](https://fxratesapi.com)
 - [Documentation](https://fxratesapi.com/docs)
-- [Plans](plans/fxratesapi-plans-pricing.yml)
-- [Rate Limits](rate-limits/fxratesapi-rate-limits.yml)
-- [Fin Ops](finops/fxratesapi-finops.yml)
+- [Blog](https://fxratesapi.com/blog)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 19.1** — emerging · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 19.2 |
+| Contract governance | 0.0 |
+| Operational transparency | 5.3 |
+| Developer ergonomics | 32.1 |
+| Access clarity | 5.3 |
+
+**Agent readiness 20.7** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | na |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | na |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | na |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 11.8** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/fxratesapi/](https://apis.io/providers/fxratesapi/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for FXRatesAPI: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/fxratesapi/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
